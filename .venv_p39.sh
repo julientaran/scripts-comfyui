@@ -6,7 +6,6 @@ python3.9-distutils -y
 echo "python 3.9 installed!!" 
 python3.9 -m venv env0 
 source env0/bin/activate
-echo "Python utilisé : $(which python)"
-echo "Pip utilisé : $(which pip)"
+echo "Python utilisé : $(python --version)"
 pip install --upgrade pip
 echo "############ VENV SCRIPT FINISHED ###########"
