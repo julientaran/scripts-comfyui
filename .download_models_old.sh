@@ -7,47 +7,46 @@ MODEL_INFO=(
     "https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors ComfyUI/models/vae/ae.safetensors"
     "https://huggingface.co/InstantX/FLUX.1-dev-Controlnet-Union/resolve/main/diffusion_pytorch_model.safetensors ComfyUI/models/controlnet/diffusion_pytorch_models.safetensors"
     "https://huggingface.co/skbhadra/ClearRealityV1/resolve/main/4x-ClearRealityV1.pth ComfyUI/models/upscale_models/4x-ClearRealityV1.pth"
-    "https://huggingface.co/guozinan/PuLID/resolve/main/pulid_flux_v0.9.0.safetensors ComfyUI/models/pulid/pulid_flux_v0.9.0.safetensors"
 )
 
+# Modele additionnel pour le mode pull_id
+PULL_ID_MODEL="https://huggingface.co/special_model/resolve/main/additional_model.safetensors ComfyUI/models/special/additional_model.safetensors"
 
-# Demander à l'utilisateur s'il souhaite installer les modèles un par un
-read -p "Voulez-vous installer chaque modèle un par un (oui/non) ? " INSTALL_ONE_BY_ONE
+# Demander a l'utilisateur s'il souhaite activer le mode pull_id
+read -p "Voulez-vous activer le mode pull_id (oui/non) ? " PULL_ID_MODE
 
-# Installation des modèles
+if [[ "$PULL_ID_MODE" =~ ^[Oo][Uu][Ii]$ || "$PULL_ID_MODE" =~ ^[Yy][Ee][Ss]$ ]]; then
+    echo "Mode pull_id active. Ajout d'un modele supplementaire."
+    MODEL_INFO+=("$PULL_ID_MODEL")
+else
+    echo "Mode pull_id non active. Installation standard."
+fi
+
+# Installation des modeles
 for MODEL in "${MODEL_INFO[@]}"; do
-    # Séparer l'URL et le chemin du fichier
+    # Separer l'URL et le chemin du fichier
     URL=$(echo $MODEL | cut -d' ' -f1)
     DEST=$(echo $MODEL | cut -d' ' -f2)
 
-    # Si l'utilisateur veut installer les modèles un par un
-    if [[ "$INSTALL_ONE_BY_ONE" =~ ^[Oo][Uu][Ii]$ || "$INSTALL_ONE_BY_ONE" =~ ^[Yy][Ee][Ss]$ ]]; then
-        read -p "Souhaitez-vous installer le modèle '$DEST' depuis '$URL' (oui/non) ? " INSTALL_MODEL
-        if [[ ! "$INSTALL_MODEL" =~ ^[Oo][Uu][Ii]$ || ! "$INSTALL_MODEL" =~ ^[Yy][Ee][Ss]$ ]]; then
-            echo "Installation du modèle '$DEST' annulée."
-            continue
-        fi
-    fi
-
-    # Vérifier si le dossier de destination existe, sinon le créer
+    # Verifier si le dossier de destination existe, sinon le creer
     DEST_DIR=$(dirname "$DEST")
     if [ ! -d "$DEST_DIR" ]; then
-        echo "Le dossier '$DEST_DIR' n'existe pas. Création du dossier..."
+        echo "Le dossier '$DEST_DIR' n'existe pas. Creation du dossier..."
         mkdir -p "$DEST_DIR"
     fi
 
-    # Vérifier si le fichier existe déjà
+    # Verifier si le fichier existe deja
     if [ -f "$DEST" ]; then
-        echo "Le fichier '$DEST' existe déjà. Téléchargement non nécessaire."
+        echo "Le fichier '$DEST' existe deja. Telechargement non necessaire."
     else
-        echo "Téléchargement du modèle depuis '$URL' vers '$DEST'..."
+        echo "Telechargement du modele depuis '$URL' vers '$DEST'..."
         wget -O "$DEST" "$URL"
 
-        # Vérifier si le téléchargement a réussi
+        # Verifier si le telechargement a reussi
         if [ $? -eq 0 ]; then
-            echo "Téléchargement réussi : '$DEST'."
+            echo "Telechargement reussi : '$DEST'."
         else
-            echo "Erreur lors du téléchargement de '$URL'."
+            echo "Erreur lors du telechargement de '$URL'."
         fi
     fi
 done
