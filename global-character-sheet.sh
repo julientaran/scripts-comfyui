@@ -102,5 +102,7 @@ done
 echo "Étape 16 : Extraction du fichier antelope ZIP."
 cd ComfyUI/models/insightface/models/
 unzip antelopev2.zip
+cd insightface/models/antelopev2/antelopev2
+mv * ..
 
 echo "Script terminé avec succès."
