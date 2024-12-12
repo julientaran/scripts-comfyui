@@ -64,10 +64,31 @@ fi
 echo "Étape 14 : Téléchargement du fichier principal."
 wget --header="Authorization: Bearer $HF_TOKEN" -O "$FILE" "$URL"
 
+# Dossier cible
+DIRECTORY="ComfyUI/models/vae"
+FILE="$DIRECTORY/vae-dev.safetensors"
+URL="https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/vae/diffusion_pytorch_model.safetensors"
+
+echo "Étape 11 : Vérification et création du dossier cible."
+if [ ! -d "$DIRECTORY" ]; then
+    echo "Le dossier '$DIRECTORY' n'existe pas. Création en cours..."
+    mkdir -p "$DIRECTORY"
+fi
+
+echo "Étape 12 : Vérification de l'existence du fichier."
+if [ -f "$FILE" ]; then
+    echo "Le fichier '$FILE' existe déjà. Téléchargement non nécessaire."
+    exit 0
+else
+    echo "Le fichier '$FILE' n'existe pas. Téléchargement en cours..."
+fi
+
+echo "Étape 14 : Téléchargement du fichier principal."
+wget --header="Authorization: Bearer $HF_TOKEN" -O "$FILE" "$URL"
+
 MODEL_INFO=(
     "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors ComfyUI/models/clip/clip_l.safetensors"
     "https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors ComfyUI/models/clip/t5xxl_fp16.safetensors"
-    "https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/ae.safetensors ComfyUI/models/vae/ae.safetensors"
     "https://huggingface.co/InstantX/FLUX.1-dev-Controlnet-Union/resolve/main/diffusion_pytorch_model.safetensors ComfyUI/models/controlnet/diffusion_pytorch_models.safetensors"
     "https://huggingface.co/skbhadra/ClearRealityV1/resolve/main/4x-ClearRealityV1.pth ComfyUI/models/upscale_models/4x-ClearRealityV1.pth"
     "https://huggingface.co/guozinan/PuLID/resolve/main/pulid_flux_v0.9.0.safetensors ComfyUI/models/pulid/pulid_flux_v0.9.0.safetensors"
