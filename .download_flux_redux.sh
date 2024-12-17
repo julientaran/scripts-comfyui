@@ -22,7 +22,7 @@ wget --header="Authorization: Bearer $HF_TOKEN" -O "$FILE" "$URL"
 
 
 # Dossier cible
-DIRECTORY="ComfyUI/models/style_models"
+DIRECTORY="ComfyUI/models/clip_vision"
 # Nom du fichier a verifier
 FILE="$DIRECTORY/sigclip_vision_patch14_384.safetensors"
 # URL du modele Hugging Face
