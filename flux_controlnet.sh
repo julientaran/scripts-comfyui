@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -x
+
 read -p "Avez-vous activé le port de Comfyui? (Tapez n'import quelle touche)" a echo
 
 cd /workspace
@@ -23,3 +27,5 @@ echo "###########################"
 echo "Telechargement des autres modèles"
 echo "###########################"
 ./download_models_basics.sh
+
+set +x
