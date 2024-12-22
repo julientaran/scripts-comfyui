@@ -4,9 +4,9 @@ set -x
 
 read -p "Avez-vous activé le port de Comfyui? (Tapez n'import quelle touche)" a echo
 read -p "Avez-vous mis assez d'espace de stockage?" a echo
+read -p "Avez-vous mis tous les scripts au niveau de /workspace?" a echo
 
 cd /workspace
-mv scripts_comfyui/* .
 chmod +x *
 git clone https://github.com/comfyanonymous/ComfyUI.git
 pip install -r requirements.txt
