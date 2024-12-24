@@ -7,7 +7,7 @@ DIRECTORY="ComfyUI/models/unet"
 FILE="$DIRECTORY/flux1-dev.safetensors"
 
 # URL du modèle Hugging Face
-URL="https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors"
+URL="https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev/resolve/main/flux1-fill-dev.safetensors"
 
 # Token par défaut (modifiez ici si besoin)
 DEFAULT_HF_TOKEN=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
