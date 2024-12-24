@@ -6,8 +6,9 @@ read -p "Avez-vous activé le port de Comfyui? (Tapez n'import quelle touche)" a
 read -p "Avez-vous mis assez d'espace de stockage?" a echo
 read -p "Avez-vous mis tous les scripts au niveau de /workspace?" a echo
 
+apt update
+
 cd /workspace
-git clone 
 python -m venv 00-env
 source 00-env/bin/activate
 chmod +x *
