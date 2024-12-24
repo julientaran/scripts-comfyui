@@ -21,7 +21,7 @@ cd ../../..
 
 
 echo "###########################"
-echo "Telechargement de flux"
+echo "Telechargement de flux fill"
 echo "###########################"
 ./download_flux_fill.sh
 
