@@ -4,7 +4,7 @@
 DIRECTORY="ComfyUI/models/unet"
 
 # Nom du fichier à vérifier
-FILE="$DIRECTORY/flux1-dev.safetensors"
+FILE="$DIRECTORY/flux1-fill-dev.safetensors"
 
 # URL du modèle Hugging Face
 URL="https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev/resolve/main/flux1-fill-dev.safetensors"
