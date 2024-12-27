@@ -29,7 +29,7 @@ fi
 # Fonction pour tenter le téléchargement avec un token donné
 download_with_token() {
     local TOKEN=$1
-    wget --header="Authorization: Bearer $TOKEN" -O "$FILE" "$URL" 2>/dev/null
+    wget --header="Authorization: Bearer $TOKEN" -O "$FILE" "$URL"
     return $?
 }
 

@@ -29,7 +29,7 @@ fi
 # Fonction pour tenter le téléchargement avec un token donné
 download_with_token() {
     local TOKEN=$1
-    wget --header="Authorization: Bearer $TOKEN" -O "$FILE" "$URL" 2>/dev/null
+    wget --header="Authorization: Bearer $TOKEN" -O "$FILE" "$URL"
     return $?
 }
 
@@ -55,3 +55,5 @@ if ! download_with_token "$DEFAULT_HF_TOKEN"; then
 fi
 
 echo "Téléchargement terminé avec succès."
+
+wget --header="Authorization: Bearer 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" -O "vae2.safetensors" "https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev/resolve/main/flux1-fill-dev.safetensors"
