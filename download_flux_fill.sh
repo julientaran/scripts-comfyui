@@ -57,3 +57,4 @@ fi
 echo "Téléchargement terminé avec succès."
 
 # wget --header="Authorization: Bearer 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" -O "vae2.safetensors".safetensors" "https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/vae/diffusion_pytorch_model.safetensors"
+# wget --header="Authorization: Bearer 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" -O "vae2.safetensors".safetensors" https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev/resolve/main/flux1-fill-dev.safetensors"

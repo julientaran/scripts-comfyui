@@ -32,4 +32,8 @@ echo "###########################"
 echo "Telechargement des autres modèles"
 echo "###########################"
 ./download_models_basics.sh 
+echo "###########################"
+echo "Telechargement des loras"
+echo "###########################"
+./get_loras.sh
 set +x
